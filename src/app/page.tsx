@@ -2,8 +2,9 @@ import Image from "next/image";
 import Header from "~/components/reusables/header";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card"
-import { BookOpen, FileText, Quote, Search, Github, Twitter, Linkedin } from "lucide-react"
+import { BookOpen, FileText, Quote, Search } from "lucide-react"
 import { Button } from "~/components/ui/button";
+import HeroSection from "~/components/reusables/hero";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
@@ -17,46 +18,7 @@ export default function Home() {
   );
 }
 
-const HeroSection = () => {
-  return (
-    <section className="relative  w-full flex items-center justify-center">
-      {/* Background with grid pattern */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundColor: "transparent",
-          backgroundImage: `
-              linear-gradient(to right, rgba(107, 76, 76, 0.08) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(107, 76, 76, 0.08) 1px, transparent 1px)
-            `,
-          backgroundSize: "24px 24px",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 80% 70% at 50% 20%, #000 40%, transparent 100%)",
-          maskImage:
-            "radial-gradient(ellipse 80% 70% at 50% 20%, #000 40%, transparent 100%)",
-        }}
-      />
 
-      {/* Content */}
-      <div className="relative py-16 z-10 container mx-auto px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-primary mb-8 text-balance leading-tight">
-            Welcome to My Digital Attic
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 text-pretty max-w-2xl mx-auto">
-            A curated collection of my thoughts, reads, and discoveries.
-          </p>
-          <div className="flex items-center justify-center space-x-4 text-sm text-muted-foreground">
-            <div className="w-12 h-px bg-border"></div>
-            <span className="font-serif italic">Where I store my notes and curiosities</span>
-            <div className="w-12 h-px bg-border"></div>
-          </div>
-        </div>
-      </div>
-      
-    </section>
-  );
-};
 {/* Featured Curios */ }
 const FeaturedCurios = () => {
   return (
@@ -137,7 +99,7 @@ const FeaturedCurios = () => {
                 />
                 <div className="flex-1 space-y-3">
                   <CardDescription className="text-sm leading-relaxed literary-body">
-                    A fascinating exploration of how our emotions and psychology drive financial decisions. Housel's
+                    A fascinating exploration of how our emotions and psychology drive financial decisions. Housel&apos;s
                     insights about wealth, greed, and happiness are reshaping how I think about money.
                   </CardDescription>
                   <div className="space-y-2">
@@ -176,16 +138,16 @@ const FeaturedCurios = () => {
                 </Badge>
               </div>
               <CardTitle className="text-xl literary-heading group-hover:text-primary smooth-transition mb-2">
-                Today's Reflection
+                Today&apos;s Reflection
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <blockquote className="text-lg italic text-foreground leading-relaxed mb-4 border-l-4 border-primary/20 pl-4 literary-accent">
-                "The best time to plant a tree was 20 years ago. The second best time is now."
+                &quot;The best time to plant a tree was 20 years ago. The second best time is now.&quot;
               </blockquote>
               <cite className="text-sm text-muted-foreground block mb-4 literary-body">— Chinese Proverb</cite>
               <CardDescription className="text-sm leading-relaxed literary-body">
-                A reminder that while we can't change the past, we always have the power to start something meaningful
+                A reminder that while we can&apos;t change the past, we always have the power to start something meaningful
                 today. Perfect timing is a myth—the courage to begin is what matters.
               </CardDescription>
               <div className="flex items-center justify-between text-xs text-muted-foreground pt-2 border-t border-border literary-accent">
