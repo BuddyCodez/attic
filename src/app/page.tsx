@@ -27,7 +27,7 @@ const FeaturedCurios = () => {
         <div className="text-center mb-12">
           <h3 className="text-3xl literary-heading font-bold text-primary mb-4 fade-in">Featured Curios</h3>
           <p className="literary-body text-muted-foreground max-w-2xl mx-auto slide-up stagger-1">
-            The most interesting items I've recently placed in the attic
+            The most interesting items I&apos;ve recently placed in the attic
           </p>
         </div>
 

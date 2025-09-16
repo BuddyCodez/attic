@@ -5,10 +5,8 @@ import { Card, CardContent } from "~/components/ui/card"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import { Star, Calendar, User, TrendingUp, Heart, MessageCircle } from "lucide-react"
-import { ThemeToggle } from "~/components/reusables/theme-toggle"
 import { FilterBar } from "~/components/reusables/filters"
 import { Pagination } from "~/components/reusables/pagination"
-import Link from "next/link"
 import Image from "next/image"
 import Header from "~/components/reusables/header"
 
@@ -209,9 +207,6 @@ export default function LibraryPage() {
         }
     }, [allBooks])
 
-    const currentlyReading = allBooks.filter((book) => book.status === "currently-reading").slice(0, 3)
-    const recentlyFinished = allBooks.filter((book) => book.status === "read").slice(0, 6)
-
     return (
         <div className="min-h-screen bg-background ">
             {/* Header */}
@@ -288,7 +283,7 @@ export default function LibraryPage() {
                 <div className="container mx-auto px-4">
                     <div className="max-w-6xl mx-auto">
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {paginatedBooks.map((book, index) => (
+                            {paginatedBooks.map((book) => (
                                 <Card key={book.id} className="paper-card hover-lift group p-2">
                                     <CardContent className="p-4">
                                         <div className="flex gap-4 mb-4">
