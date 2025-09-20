@@ -147,7 +147,8 @@
       rgba(139, 115, 85, 0.015) 49%,
       rgba(139, 115, 85, 0.015) 51%,
       transparent 52%
-    ), linear-gradient(0deg, transparent 98%, rgba(179, 156, 130, 0.03) 100%);
+    ),
+    linear-gradient(0deg, transparent 98%, rgba(179, 156, 130, 0.03) 100%);
   background-size: 16px 16px, 24px 24px, 200px 200px;
   background-position: 0 0, 8px 8px, 0 0;
 }
@@ -167,7 +168,8 @@
       rgba(240, 235, 229, 0.02) 49%,
       rgba(240, 235, 229, 0.02) 51%,
       transparent 52%
-    ), linear-gradient(0deg, transparent 98%, rgba(179, 156, 130, 0.06) 100%);
+    ),
+    linear-gradient(0deg, transparent 98%, rgba(179, 156, 130, 0.06) 100%);
   background-size: 16px 16px, 24px 24px, 250px 250px;
   background-position: 0 0, 8px 8px, 0 0;
 }
@@ -187,11 +189,13 @@
       rgba(139, 115, 85, 0.01) 49%,
       rgba(139, 115, 85, 0.01) 51%,
       transparent 52%
-    ), linear-gradient(90deg, transparent 98%, rgba(179, 156, 130, 0.02) 100%),
+    ),
+    linear-gradient(90deg, transparent 98%, rgba(179, 156, 130, 0.02) 100%),
     linear-gradient(0deg, transparent 98%, rgba(139, 115, 85, 0.015) 100%);
   background-size: 12px 12px, 18px 18px, 150px 150px, 120px 120px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(107, 76, 76, 0.05), 0 4px 12px
-    rgba(107, 76, 76, 0.08), 0 2px 6px rgba(107, 76, 76, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(107, 76, 76, 0.05), 0 4px 12px rgba(107, 76, 76, 0.08),
+    0 2px 6px rgba(107, 76, 76, 0.06);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -210,11 +214,13 @@
       rgba(240, 235, 229, 0.02) 49%,
       rgba(240, 235, 229, 0.02) 51%,
       transparent 52%
-    ), linear-gradient(90deg, transparent 98%, rgba(179, 156, 130, 0.04) 100%),
+    ),
+    linear-gradient(90deg, transparent 98%, rgba(179, 156, 130, 0.04) 100%),
     linear-gradient(0deg, transparent 98%, rgba(240, 235, 229, 0.025) 100%);
   background-size: 12px 12px, 18px 18px, 180px 180px, 150px 150px;
-  box-shadow: inset 0 1px 0 rgba(179, 156, 130, 0.15), inset 0 -1px 0 rgba(42, 31, 26, 0.3), 0 6px 16px
-    rgba(42, 31, 26, 0.4), 0 3px 8px rgba(42, 31, 26, 0.2);
+  box-shadow: inset 0 1px 0 rgba(179, 156, 130, 0.15),
+    inset 0 -1px 0 rgba(42, 31, 26, 0.3), 0 6px 16px rgba(42, 31, 26, 0.4),
+    0 3px 8px rgba(42, 31, 26, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -233,7 +239,8 @@
       rgba(139, 115, 85, 0.015) 50%,
       rgba(139, 115, 85, 0.015) 51%,
       transparent 52%
-    ), linear-gradient(0deg, transparent 97%, rgba(179, 156, 130, 0.04) 100%),
+    ),
+    linear-gradient(0deg, transparent 97%, rgba(179, 156, 130, 0.04) 100%),
     linear-gradient(90deg, transparent 97%, rgba(139, 115, 85, 0.03) 100%);
   background-size: 20px 20px, 28px 28px, 300px 300px, 250px 250px;
   background-position: 0 0, 10px 10px, 0 0, 50px 50px;
@@ -254,7 +261,8 @@
       rgba(240, 235, 229, 0.025) 50%,
       rgba(240, 235, 229, 0.025) 51%,
       transparent 52%
-    ), linear-gradient(0deg, transparent 97%, rgba(179, 156, 130, 0.08) 100%),
+    ),
+    linear-gradient(0deg, transparent 97%, rgba(179, 156, 130, 0.08) 100%),
     linear-gradient(90deg, transparent 97%, rgba(240, 235, 229, 0.04) 100%);
   background-size: 20px 20px, 28px 28px, 350px 350px, 300px 300px;
   background-position: 0 0, 10px 10px, 0 0, 50px 50px;
@@ -262,15 +270,22 @@
 
 .book-spine {
   /* Paper texture overlay */
-  background: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0),
-    linear-gradient(135deg, var(--color-card) 0%, var(--color-muted) 50%, var(--color-card) 100%);
+  background: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 0
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-card) 0%,
+      var(--color-muted) 50%,
+      var(--color-card) 100%
+    );
   background-size: 6px 6px, 100% 100%;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 -1px 0 rgba(107, 76, 76, 0.1),
     inset 1px 0 0 rgba(255, 255, 255, 0.1),
-    inset -1px 0 0 rgba(107, 76, 76, 0.05),
-    0 2px 8px rgba(107, 76, 76, 0.12),
+    inset -1px 0 0 rgba(107, 76, 76, 0.05), 0 2px 8px rgba(107, 76, 76, 0.12),
     0 1px 3px rgba(107, 76, 76, 0.08);
 }
 
@@ -298,7 +313,8 @@
       rgba(139, 115, 85, 0.01) 75%,
       rgba(139, 115, 85, 0.01) 76%,
       transparent 77%
-    ), linear-gradient(45deg, transparent 98%, rgba(179, 156, 130, 0.025) 100%);
+    ),
+    linear-gradient(45deg, transparent 98%, rgba(179, 156, 130, 0.025) 100%);
   background-size: 24px 24px, 24px 24px, 400px 400px;
 }
 
@@ -325,7 +341,8 @@
       rgba(240, 235, 229, 0.02) 75%,
       rgba(240, 235, 229, 0.02) 76%,
       transparent 77%
-    ), linear-gradient(45deg, transparent 98%, rgba(179, 156, 130, 0.05) 100%);
+    ),
+    linear-gradient(45deg, transparent 98%, rgba(179, 156, 130, 0.05) 100%);
   background-size: 24px 24px, 24px 24px, 450px 450px;
 }
 
@@ -344,10 +361,12 @@
       rgba(139, 115, 85, 0.02) 49%,
       rgba(139, 115, 85, 0.02) 51%,
       transparent 53%
-    ), linear-gradient(90deg, transparent 97%, rgba(179, 156, 130, 0.03) 100%),
+    ),
+    linear-gradient(90deg, transparent 97%, rgba(179, 156, 130, 0.03) 100%),
     linear-gradient(0deg, transparent 97%, rgba(139, 115, 85, 0.025) 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(107, 76, 76, 0.08), 0 8px 20px
-    rgba(107, 76, 76, 0.12), 0 4px 10px rgba(107, 76, 76, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(107, 76, 76, 0.08), 0 8px 20px rgba(107, 76, 76, 0.12),
+    0 4px 10px rgba(107, 76, 76, 0.08);
   transform: translateY(-6px) scale(1.02);
 }
 
@@ -366,10 +385,12 @@
       rgba(240, 235, 229, 0.03) 49%,
       rgba(240, 235, 229, 0.03) 51%,
       transparent 53%
-    ), linear-gradient(90deg, transparent 97%, rgba(179, 156, 130, 0.06) 100%),
+    ),
+    linear-gradient(90deg, transparent 97%, rgba(179, 156, 130, 0.06) 100%),
     linear-gradient(0deg, transparent 97%, rgba(240, 235, 229, 0.04) 100%);
-  box-shadow: inset 0 1px 0 rgba(179, 156, 130, 0.2), inset 0 -1px 0 rgba(42, 31, 26, 0.4), 0 10px 24px
-    rgba(42, 31, 26, 0.5), 0 4px 12px rgba(42, 31, 26, 0.3);
+  box-shadow: inset 0 1px 0 rgba(179, 156, 130, 0.2),
+    inset 0 -1px 0 rgba(42, 31, 26, 0.4), 0 10px 24px rgba(42, 31, 26, 0.5),
+    0 4px 12px rgba(42, 31, 26, 0.3);
   transform: translateY(-6px) scale(1.02);
 }
 
@@ -379,7 +400,8 @@
 }
 
 .hover-lift {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     background-image 0.3s ease-in-out;
 }
 
@@ -487,7 +509,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   animation: shimmer 2s infinite;
 }
 
@@ -498,4 +525,14 @@
   100% {
     transform: translateX(100%);
   }
+}
+
+/* // scroll behaviour hidden for the scroll container */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+.scroll-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

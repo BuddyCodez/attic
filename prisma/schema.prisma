@@ -1,0 +1,253 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Core content types
+enum ContentType {
+  ESSAY
+  BOOK
+  QUOTE
+  NOTE
+  COLLECTION
+}
+
+enum BookStatus {
+  WANT_TO_READ
+  CURRENTLY_READING
+  READ
+  DNF // Did Not Finish
+}
+
+enum PublishStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+// Essays/Blog posts
+model Essay {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  title       String
+  subtitle    String?
+  content     String // Markdown content
+  excerpt     String?
+  readTime    Int? // in minutes
+  coverImage  String?
+  status      PublishStatus @default(PUBLISHED)
+  publishedAt DateTime      @default(now())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relations
+  tags EssayTag[]
+
+  // Full-text search index
+  @@index([title])
+  @@index([publishedAt])
+  @@index([status])
+  @@map("essays")
+}
+
+// Books
+model Book {
+  id            String  @id @default(cuid())
+  title         String
+  author        String
+  isbn          String? @unique
+  coverImage    String?
+  description   String?
+  pages         Int?
+  publishedYear Int?
+  language      String  @default("en")
+
+  // Reading status
+  status   BookStatus @default(WANT_TO_READ)
+  progress Int        @default(0) // percentage 0-100
+  rating   Int? // 1-5 stars
+
+  // Personal tracking
+  startedAt  DateTime?
+  finishedAt DateTime?
+  notes      String? // Personal notes
+  highlights Json? // Array of highlights with page numbers
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  tags   BookTag[]
+  quotes Quote[] // Quotes from this book
+
+  @@index([status])
+  @@index([rating])
+  @@index([finishedAt])
+  @@index([title, author])
+  @@map("books")
+}
+
+// Quotes
+model Quote {
+  id        String   @id @default(cuid())
+  content   String
+  author    String?
+  source    String? // Book title, article, speech, etc.
+  context   String? // Where you found it, why it's meaningful
+  page      Int? // Page number if from a book
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Optional book relation
+  bookId String?
+  book   Book?   @relation(fields: [bookId], references: [id], onDelete: SetNull)
+
+  // Relations
+  tags QuoteTag[]
+
+  @@index([author])
+  @@index([createdAt])
+  @@index([content])
+  @@map("quotes")
+}
+
+// General notes
+model Note {
+  id        String        @id @default(cuid())
+  title     String?
+  content   String
+  status    PublishStatus @default(DRAFT)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  // Relations
+  tags NoteTag[]
+
+  @@index([createdAt])
+  @@index([title])
+  @@map("notes")
+}
+
+// Collections (curated groups of content)
+model Collection {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  coverImage  String?
+  isPublic    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  items CollectionItem[]
+  tags  CollectionTag[]
+
+  @@index([name])
+  @@index([isPublic])
+  @@map("collections")
+}
+
+// Items in a collection (polymorphic relation)
+model CollectionItem {
+  id           String     @id @default(cuid())
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  // Polymorphic fields
+  contentType ContentType
+  contentId   String
+  order       Int         @default(0)
+  note        String? // Personal note about why this item is in the collection
+
+  createdAt DateTime @default(now())
+
+  @@unique([collectionId, contentId, contentType])
+  @@index([contentType, contentId])
+  @@map("collection_items")
+}
+
+// Tags system
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  color     String?  @default("#6366f1") // Hex color
+  createdAt DateTime @default(now())
+
+  // Relations to junction tables
+  essays      EssayTag[]
+  books       BookTag[]
+  quotes      QuoteTag[]
+  notes       NoteTag[]
+  collections CollectionTag[]
+
+  @@index([name])
+  @@map("tags")
+}
+
+// Junction tables for many-to-many relationships
+model EssayTag {
+  essayId   String
+  tagId     String
+  essay     Essay    @relation(fields: [essayId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([essayId, tagId])
+  @@map("essay_tags")
+}
+
+model BookTag {
+  bookId    String
+  tagId     String
+  book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([bookId, tagId])
+  @@map("book_tags")
+}
+
+model QuoteTag {
+  quoteId   String
+  tagId     String
+  quote     Quote    @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([quoteId, tagId])
+  @@map("quote_tags")
+}
+
+model NoteTag {
+  noteId    String
+  tagId     String
+  note      Note     @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([noteId, tagId])
+  @@map("note_tags")
+}
+
+model CollectionTag {
+  collectionId String
+  tagId        String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  tag          Tag        @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
+
+  @@id([collectionId, tagId])
+  @@map("collection_tags")
+}

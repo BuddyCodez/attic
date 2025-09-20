@@ -1,4 +1,13 @@
-const HeroSection = () => {
+interface HeroSectionProps {
+    title?: string;
+    description?: string;
+    subtitle?: string;
+}
+const HeroSection = ({
+    title = 'Welcome to My Digital Attic',
+    description = 'A curated collection of my thoughts, notes, and curiosities across various domains.',
+    subtitle = 'Where I store my notes and curiosities'
+}: HeroSectionProps) => {
     return (
         <section className="relative  w-full flex items-center justify-center">
             {/* Background with grid pattern */}
@@ -20,14 +29,16 @@ const HeroSection = () => {
             <div className="relative py-16 z-10 container mx-auto px-4 text-center">
                 <div className="max-w-4xl mx-auto">
                     <h1 className="text-5xl md:text-7xl font-serif font-bold text-primary mb-8 text-balance leading-tight">
-                        Welcome to My Digital Attic
+                        {title}
                     </h1>
                     <p className="text-xl md:text-2xl text-muted-foreground mb-12 text-pretty max-w-2xl mx-auto">
-                        A curated collection of my thoughts, reads, and discoveries.
+                        {description}
                     </p>
                     <div className="flex items-center justify-center space-x-4 text-sm text-muted-foreground">
                         <div className="w-12 h-px bg-border"></div>
-                        <span className="font-serif italic">Where I store my notes and curiosities</span>
+                        <span className="font-serif italic">
+                            {subtitle}
+                        </span>
                         <div className="w-12 h-px bg-border"></div>
                     </div>
                 </div>

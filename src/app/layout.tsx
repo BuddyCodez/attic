@@ -4,9 +4,12 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Playfair_Display } from "next/font/google"
 // import { Analytics } from "@vercel/analytics/next"
+import "../lib/orpc.server"; // for pre-rendering
 import { Suspense } from "react"
 import { ThemeProvider } from "~/providers/theme-provider";
+import { Toaster } from "../components/ui/toaster";
 import "./globals.css"
+import { Providers } from "~/providers/query-client"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -28,8 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} attic-texture`}>
-        <ThemeProvider defaultTheme="light" storageKey="attic-theme">
-          <Suspense fallback={null}>{children}</Suspense>
+        <ThemeProvider storageKey="attic-theme">
+          <Suspense fallback={null}>
+            <Providers>
+              <Toaster />
+              {children}
+            </Providers>
+          </Suspense>
         </ThemeProvider>
         {/* <Analytics /> */}
       </body>
